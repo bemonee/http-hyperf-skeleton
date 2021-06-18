@@ -52,7 +52,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "HyperfTest\\": "./test/"
+            "Test\\": "./test/"
         }
     },
     "minimum-stability": "dev",
@@ -71,7 +71,7 @@
         ],
         "test": "co-phpunit -c phpunit.xml --colors=always",
         "cs-fix": "php-cs-fixer fix ./",
-        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
+        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config ./test",
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "php ./bin/hyperf.php start"

@@ -58,3 +58,9 @@ Para hacer un beautify del código y que todos sigamos el mismo criterio a la ho
 ```bash
 $ composer cs-fix
 ```
+
+# Crear un modelo
+
+```bash
+php bin/hyperf.php db:model table_name
+```
