@@ -7,7 +7,7 @@ Este access token se validará en cada petición que se realice para verificar l
 # Requisitos para el desarrollo
 
  - PHP >= 7.4
- - Swoole PHP >= 4.4，con `Short Name` desactivado
+ - Swoole PHP >= 4.4，con `Short Name` desactivado (swoole.use_shortname = off en el php.ini)
  - OpenSSL PHP
  - JSON PHP
  - PDO PHP
