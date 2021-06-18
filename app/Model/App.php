@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use Hyperf\Database\Model\Collection;
+use Hyperf\Database\Model\Relations\BelongsToMany;
 use Hyperf\Database\Model\Relations\HasMany;
 
 class App extends Model
@@ -12,20 +12,13 @@ class App extends Model
     protected $table = 'apps';
     protected $visible = ['id', 'name'];
 
-    private function roles(): HasMany
+    public function roles(): HasMany
     {
         return $this->hasMany(Role::class);
     }
 
-    public function getRoles(): Collection
+    public function tenants(): BelongsToMany
     {
-        return $this->roles()->get();
+        return $this->belongsToMany(Tenant::class);
     }
-
-    public function addRole(Role $role): Role
-    {
-        return $this->roles()->save($role);
-    }
-
-    /** @todo Define ManyToMany tenant relationship */
 }
