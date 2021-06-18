@@ -481,3 +481,6 @@ composer.lock
 ##### PHP-CS
 .php_cs.cache
 
+#####
+.env
+
