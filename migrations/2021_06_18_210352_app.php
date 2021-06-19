@@ -11,7 +11,7 @@ class App extends Migration
      */
     public function up(): void
     {
-        Schema::table('apps', function (Blueprint $table) {
+        Schema::create('apps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable(false)->unique();
             $table->timestamps();

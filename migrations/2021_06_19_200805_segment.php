@@ -11,7 +11,7 @@ class Segment extends Migration
      */
     public function up(): void
     {
-        Schema::table('segments', function (Blueprint $table) {
+        Schema::create('segments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable(false)->unique();
             $table->timestamps();
