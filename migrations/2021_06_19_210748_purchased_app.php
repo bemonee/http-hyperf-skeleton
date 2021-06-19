@@ -4,7 +4,7 @@ use Hyperf\Database\Schema\Schema;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Migrations\Migration;
 
-class Purchased_app extends Migration
+class PurchasedApp extends Migration
 {
     /**
      * Run the migrations.
