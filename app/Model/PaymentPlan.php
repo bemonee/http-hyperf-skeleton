@@ -5,7 +5,6 @@ namespace App\Model;
 
 use Hyperf\Database\Model\Relations\BelongsTo;
 
-
 class PaymentPlan extends Model
 {
     protected $table = 'plans';

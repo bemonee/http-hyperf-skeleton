@@ -16,12 +16,12 @@ class User extends Model
 
     protected $fillable = ['email', 'first_name', 'last_name', 'password'];
 
-    public function setEmailAttribute(string $email)
+    public function setEmailAttribute(string $email): void
     {
         $this->attributes['email'] = strtolower($email);
     }
 
-    public function setFirstNameAttribute(string $firstName)
+    public function setFirstNameAttribute(string $firstName): void
     {
         $this->attributes['first_name'] = ucwords(strtolower($firstName));
     }
@@ -31,7 +31,7 @@ class User extends Model
         return "{$this->last_name}, {$this->first_name}";
     }
 
-    public function setPasswordAttribute(string $password): string
+    public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = password_hash($password, PASSWORD_DEFAULT);
     }

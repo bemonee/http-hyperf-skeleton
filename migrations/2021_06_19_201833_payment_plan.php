@@ -15,7 +15,7 @@ class Payment_plan extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('app_id')->nullable(false);
             $table->string('name')->nullable(false);
-            $table->decimal('price',9,3)->nullable(false);
+            $table->decimal('price', 9, 3)->nullable(false);
             $table->timestamps();
 
             $table
