@@ -1,18 +1,18 @@
 <?php
 
-declare(strict_types=1);
 
 namespace App\Model;
 
 use Hyperf\Database\Model\Relations\BelongsTo;
 
-class Role extends Model
+
+class PaymentPlan extends Model
 {
-    protected $table = 'roles';
+    protected $table = 'plans';
 
-    protected $visible = ['id', 'name'];
+    protected $visible = ['id', 'name', 'price'];
 
-    protected $fillable = ['app_id', 'name'];
+    protected $fillable = ['app_id', 'name', 'price'];
 
     public function app(): BelongsTo
     {

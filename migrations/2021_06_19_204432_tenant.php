@@ -4,27 +4,25 @@ use Hyperf\Database\Schema\Schema;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Migrations\Migration;
 
-class Role extends Migration
+class Tenant extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('app_id')->nullable(false);
-            $table->string('name')->nullable(false);
+            $table->unsignedBigInteger('segment_id')->nullable(false);
+            $table->string('name')->nullable(false)->unique();
             $table->timestamps();
 
             $table
-                ->foreign('app_id', 'app_role_fk')
+                ->foreign('segment_id', 'tenant_segment_fk')
                 ->references('id')
-                ->on('apps')
+                ->on('segments')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->unique(['app_id, name']);
+                ->onDelete('restrict');
         });
     }
 
@@ -33,6 +31,6 @@ class Role extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('tenants');
     }
 }

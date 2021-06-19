@@ -9,7 +9,10 @@ use Hyperf\Database\Model\Relations\HasMany;
 class Segment extends Model
 {
     protected $table = 'segments';
-    protected $visible = ['id', 'tenant_id', 'name'];
+
+    protected $visible = ['id', 'name'];
+
+    protected $fillable = ['name'];
 
     public function tenants(): HasMany
     {
