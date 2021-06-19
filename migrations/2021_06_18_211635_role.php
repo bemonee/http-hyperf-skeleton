@@ -24,7 +24,7 @@ class Role extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->unique(['app_id, name']);
+            $table->unique(['app_id', 'name']);
         });
     }
 

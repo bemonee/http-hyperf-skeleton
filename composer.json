@@ -69,7 +69,6 @@
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
-        "console": "php ./bin/hyperf.php $1",
         "test": "co-phpunit -c phpunit.xml --colors=always",
         "cs-fix": "php-cs-fixer fix ./",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config ./test",
