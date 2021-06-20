@@ -4,9 +4,9 @@
 namespace App\Repository;
 
 use App\Contracts\Repository\RepositoryInterface;
-use App\Exception\BusinessException;
+use App\Exception\Http\NotFoundHttpException;
+use App\Model\Model;
 use Hyperf\Database\Model\Collection;
-use Hyperf\Database\Model\Model;
 
 abstract class EloquentRepository implements RepositoryInterface
 {
@@ -29,20 +29,30 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function update(array $data, $id): int
     {
-        return $this->model->where('id', $id)->update($data);
+        $model = $this->findModelOrThrowNotFoundException($id);
+
+        return $model->update($data);
     }
 
     public function delete($id): bool
     {
-        return $this->model->destroy($id);
+        $model = $this->findModelOrThrowNotFoundException($id);
+
+        return $model->destroy($id);
     }
 
+    /** @inheritDoc */
     public function find($id): Model
+    {
+        return $this->findModelOrThrowNotFoundException($id);
+    }
+
+    private function findModelOrThrowNotFoundException($id): Model
     {
         $model = $this->model->find($id);
 
         if (null === $model) {
-            throw new BusinessException(get_class($this->model). " with id $id not found");
+            throw new NotFoundHttpException($this->model, $id);
         }
 
         return $model;

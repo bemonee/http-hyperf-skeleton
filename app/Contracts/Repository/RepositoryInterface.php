@@ -4,6 +4,7 @@ namespace App\Contracts\Repository;
 
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
+use Hyperf\HttpMessage\Exception\NotFoundHttpException;
 
 interface RepositoryInterface
 {
@@ -15,5 +16,6 @@ interface RepositoryInterface
 
     public function delete($id): bool;
 
+    /** @throws NotFoundHttpException */
     public function find($id): Model;
 }
