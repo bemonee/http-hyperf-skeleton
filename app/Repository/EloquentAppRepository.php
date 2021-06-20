@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Contracts\Repository\AppRepositoryInterface;
 use App\Model\App;
+use App\Contract\Repository\AppRepositoryInterface;
 
 class EloquentAppRepository extends EloquentRepository implements AppRepositoryInterface
 {

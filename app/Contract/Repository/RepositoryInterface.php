@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Contracts\Repository;
+namespace App\Contract\Repository;
 
-use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
+use Hyperf\Database\Model\Collection;
 use Hyperf\HttpMessage\Exception\NotFoundHttpException;
 
 interface RepositoryInterface
 {
     public function all(): Collection;
 
-    public function create(array  $data): Model;
+    public function create(array $data): Model;
 
     public function update(array $data, $id): int;
 

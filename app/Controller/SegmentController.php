@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use App\Contracts\Repository\SegmentRepositoryInterface;
 use Hyperf\Di\Annotation\Inject;
-use Hyperf\HttpMessage\Exception\NotFoundHttpException;
+use Laminas\Stdlib\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\GetMapping;
+use Hyperf\HttpServer\Annotation\Middleware;
 use Hyperf\HttpServer\Annotation\PutMapping;
-use Psr\Http\Message\ResponseInterface;
+use App\Contract\Repository\SegmentRepositoryInterface;
 
 /**
  * @Controller(prefix="api/v1/segments")
+ * @Middleware()
  */
 class SegmentController extends AbstractController
 {
-
     /**
      * @Inject
      */
@@ -44,7 +45,7 @@ class SegmentController extends AbstractController
     /**
      * @PutMapping(path="{segmentId}")
      */
-    public function updateOneSegment(int $segmentId): ResponseInterface
+    public function updateOneSegment(RequestInterface $request): ResponseInterface
     {
     }
 }

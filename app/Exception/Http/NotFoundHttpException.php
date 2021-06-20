@@ -2,9 +2,9 @@
 
 namespace App\Exception\Http;
 
-use App\Helpers\HttpStatusCodes;
 use App\Model\Model;
 use ReflectionClass;
+use App\Helpers\HttpStatusCodes;
 
 final class NotFoundHttpException extends HttpErrorException
 {

@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Contracts\Repository\SegmentRepositoryInterface;
 use App\Model\Segment;
+use App\Contract\Repository\SegmentRepositoryInterface;
 
 class EloquentSegmentRepository extends EloquentRepository implements SegmentRepositoryInterface
 {

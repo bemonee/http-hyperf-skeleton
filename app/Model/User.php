@@ -4,8 +4,22 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Carbon\Carbon;
+use Hyperf\Utils\Str;
+use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property string $password
+ * @property-read string $full_name
+ * @property-read Collection|Permission[] $permissions
+ */
 class User extends Model
 {
     protected $table = 'users';
@@ -23,7 +37,12 @@ class User extends Model
 
     public function setFirstNameAttribute(string $firstName): void
     {
-        $this->attributes['first_name'] = ucwords(strtolower($firstName));
+        $this->attributes['first_name'] = Str::title($firstName);
+    }
+
+    public function setLastNameAttribute(string $lastName): void
+    {
+        $this->attributes['last_name'] = Str::title($lastName);
     }
 
     public function getFullNameAttribute(): string
@@ -38,6 +57,6 @@ class User extends Model
 
     public function permissions(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Permission::class);
     }
 }

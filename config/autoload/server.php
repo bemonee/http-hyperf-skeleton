@@ -1,17 +1,10 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
-use Hyperf\Server\Server;
-use Hyperf\Server\Event;
+
 use Swoole\Constant;
+use Hyperf\Server\Event;
+use Hyperf\Server\Server;
 
 return [
     'mode' => SWOOLE_PROCESS,

@@ -2,8 +2,8 @@
 
 namespace App\Exception\Http;
 
-use App\Helpers\HttpStatusCodes;
 use Carbon\Carbon;
+use App\Helpers\HttpStatusCodes;
 use Hyperf\HttpMessage\Exception\HttpException;
 
 abstract class HttpErrorException extends HttpException

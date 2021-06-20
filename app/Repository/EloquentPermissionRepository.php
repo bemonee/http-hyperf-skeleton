@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Repository;
 
-use App\Contracts\Repository\PermissionRepositoryInterface;
 use App\Model\Permission;
+use App\Contract\Repository\PermissionRepositoryInterface;
 
 class EloquentPermissionRepository extends EloquentRepository implements PermissionRepositoryInterface
 {

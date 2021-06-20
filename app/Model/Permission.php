@@ -4,9 +4,19 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use Hyperf\Database\Model\Relations\BelongsTo;
+use Carbon\Carbon;
 use Hyperf\Database\Model\Relations\HasOne;
+use Hyperf\Database\Model\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $role_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read Role $role
+ * @property-read User $user
+ */
 class Permission extends Model
 {
     protected $table = 'permissions';

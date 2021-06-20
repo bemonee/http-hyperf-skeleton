@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Repository;
 
-use App\Contracts\Repository\RepositoryInterface;
-use App\Exception\Http\NotFoundHttpException;
 use App\Model\Model;
 use Hyperf\Database\Model\Collection;
+use App\Exception\Http\NotFoundHttpException;
+use App\Contract\Repository\RepositoryInterface;
 
 abstract class EloquentRepository implements RepositoryInterface
 {

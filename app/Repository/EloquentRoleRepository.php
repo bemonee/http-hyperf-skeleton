@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Repository;
 
-use App\Contracts\Repository\RoleRepositoryInterface;
 use App\Model\Role;
+use App\Contract\Repository\RoleRepositoryInterface;
 
 class EloquentRoleRepository extends EloquentRepository implements RoleRepositoryInterface
 {

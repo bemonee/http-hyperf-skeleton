@@ -4,9 +4,20 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use Hyperf\Database\Model\Relations\BelongsTo;
+use Carbon\Carbon;
+use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\HasMany;
+use Hyperf\Database\Model\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property int $segment_id
+ * @property string $name
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read Collection|PurchasedApp[] $purchases
+ * @property-read Segment $segment
+ */
 class Tenant extends Model
 {
     protected $table = 'tenants';

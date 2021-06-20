@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Repository;
 
-use App\Contracts\Repository\TenantRepositoryInterface;
 use App\Model\Tenant;
+use App\Contract\Repository\TenantRepositoryInterface;
 
 class EloquentTenantRepository extends EloquentRepository implements TenantRepositoryInterface
 {

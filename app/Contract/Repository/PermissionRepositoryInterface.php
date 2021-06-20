@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\Repository;
+namespace App\Contract\Repository;
 
 interface PermissionRepositoryInterface extends RepositoryInterface
 {
