@@ -4,7 +4,7 @@ namespace App\Exception\Http;
 
 use App\Model\Model;
 use ReflectionClass;
-use App\Helpers\HttpStatusCodes;
+use App\Constants\HttpStatusCodes;
 
 final class NotFoundHttpException extends HttpErrorException
 {

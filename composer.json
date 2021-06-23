@@ -13,6 +13,7 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.4",
+        "ext-json": "*",
         "hyperf/amqp": "~2.1.0",
         "hyperf/cache": "~2.1.0",
         "hyperf/command": "~2.1.0",
@@ -28,7 +29,7 @@
         "hyperf/model-cache": "~2.1.0",
         "hyperf/process": "~2.1.0",
         "hyperf/redis": "~2.1.0",
-        "ext-json": "*"
+        "hyperf/validation": "^2.1"
     },
     "require-dev": {
         "swoole/ide-helper": "^4.5",

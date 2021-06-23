@@ -1,6 +1,9 @@
 <?php
 
+use Carbon\Carbon;
+use Hyperf\DbConnection\Db;
 use Hyperf\Database\Schema\Schema;
+use App\Constants\SuperUserConstant;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Migrations\Migration;
 
@@ -13,7 +16,7 @@ class Role extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('app_id')->nullable(false);
+            $table->unsignedBigInteger('app_id')->nullable(true);
             $table->string('name')->nullable(false);
             $table->timestamps();
 
@@ -26,6 +29,13 @@ class Role extends Migration
 
             $table->unique(['app_id', 'name']);
         });
+
+        DB::table('roles')->insert([
+            'id' => SuperUserConstant::getId(),
+            'app_id' => null,
+            'name' => SuperUserConstant::getName(),
+            'created_at' => Carbon::now()
+        ]);
     }
 
     /**

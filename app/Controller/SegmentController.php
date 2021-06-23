@@ -2,18 +2,16 @@
 
 namespace App\Controller;
 
+use App\Request\SegmentRequest;
 use Hyperf\Di\Annotation\Inject;
-use Laminas\Stdlib\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\GetMapping;
-use Hyperf\HttpServer\Annotation\Middleware;
-use Hyperf\HttpServer\Annotation\PutMapping;
+use Hyperf\HttpServer\Annotation\PostMapping;
 use App\Contract\Repository\SegmentRepositoryInterface;
 
 /**
  * @Controller(prefix="api/v1/segments")
- * @Middleware()
  */
 class SegmentController extends AbstractController
 {
@@ -43,9 +41,9 @@ class SegmentController extends AbstractController
     }
 
     /**
-     * @PutMapping(path="{segmentId}")
+     * @PostMapping(path="")
      */
-    public function updateOneSegment(RequestInterface $request): ResponseInterface
+    public function createOneSegment(SegmentRequest $request): void
     {
     }
 }
