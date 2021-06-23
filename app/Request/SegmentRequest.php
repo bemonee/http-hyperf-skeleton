@@ -23,7 +23,6 @@ class SegmentRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'sarasa' => 'required|max:255',
         ];
     }
 }
