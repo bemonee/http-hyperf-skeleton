@@ -3,7 +3,7 @@
 namespace App\Exception\Handler;
 
 use Throwable;
-use App\Helpers\HttpErrorHelper;
+use App\Helpers\Http\HttpErrorHelper;
 use Psr\Http\Message\ResponseInterface;
 use Hyperf\Validation\ValidationException;
 use Hyperf\HttpMessage\Stream\SwooleStream;

@@ -2,7 +2,7 @@
 
 namespace App\Exception\Http;
 
-use App\Helpers\HttpErrorHelper;
+use App\Helpers\Http\HttpErrorHelper;
 use Hyperf\HttpMessage\Exception\HttpException;
 
 abstract class HttpErrorException extends HttpException
