@@ -2,7 +2,7 @@
 
 namespace App\Exception\Http;
 
-use App\Constants\HttpStatusCodes;
+use App\Constants\Http\HttpStatusCodes;
 
 final class ForbiddenHttpException extends HttpErrorException
 {

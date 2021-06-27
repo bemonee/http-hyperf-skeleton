@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use Carbon\Carbon;
-use App\Constants\HttpStatusCodes;
+use App\Constants\Http\HttpStatusCodes;
 
 class HttpErrorHelper
 {

@@ -2,11 +2,10 @@
 
 namespace App\Exception\Http;
 
-use App\Model\Model;
-use ReflectionClass;
-use App\Constants\HttpStatusCodes;
+use App\Model\Generic\Model;
+use App\Constants\Http\HttpStatusCodes;
 
-final class NotFoundHttpException extends HttpErrorException
+final class NotFoundHttpException extends ModelHttpException
 {
     public function __construct(Model $model, $id)
     {
@@ -14,10 +13,5 @@ final class NotFoundHttpException extends HttpErrorException
             HttpStatusCodes::HTTP_NOT_FOUND,
             "{$this->getModelClassNameWithoutNamespace($model)} with id $id not found"
         );
-    }
-
-    private function getModelClassNameWithoutNamespace(Model $model): string
-    {
-        return (new ReflectionClass($model))->getShortName();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exception\Http;
 
-use App\Constants\HttpStatusCodes;
+use App\Constants\Http\HttpStatusCodes;
 
 final class UnauthorizedHttpException extends HttpErrorException
 {
@@ -14,9 +14,6 @@ final class UnauthorizedHttpException extends HttpErrorException
             $message .= ' - Reason: ' . $reason;
         }
 
-        parent::__construct(
-            HttpStatusCodes::HTTP_FORBIDDEN,
-            "User is not authorized to perform this action"
-        );
+        parent::__construct(HttpStatusCodes::HTTP_FORBIDDEN, $message);
     }
 }

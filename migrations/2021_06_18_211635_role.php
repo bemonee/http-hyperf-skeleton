@@ -3,8 +3,8 @@
 use Carbon\Carbon;
 use Hyperf\DbConnection\Db;
 use Hyperf\Database\Schema\Schema;
-use App\Constants\SuperUserConstant;
 use Hyperf\Database\Schema\Blueprint;
+use App\Constants\User\SuperUserConstant;
 use Hyperf\Database\Migrations\Migration;
 
 class Role extends Migration
