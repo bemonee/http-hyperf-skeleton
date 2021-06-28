@@ -32,12 +32,13 @@
         "hyperf/validation": "^2.1"
     },
     "require-dev": {
-        "swoole/ide-helper": "^4.5",
         "friendsofphp/php-cs-fixer": "^2.14",
+        "hyperf/devtool": "~2.1.0",
+        "hyperf/testing": "~2.1.0",
+        "hyperf/watcher": "^2.1",
         "mockery/mockery": "^1.0",
         "phpstan/phpstan": "^0.12",
-        "hyperf/devtool": "~2.1.0",
-        "hyperf/testing": "~2.1.0"
+        "swoole/ide-helper": "^4.5"
     },
     "suggest": {
         "ext-openssl": "Required to use HTTPS.",
@@ -76,6 +77,7 @@
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "php ./bin/hyperf.php start"
-        ]
+        ],
+        "start-dev": "php bin/hyperf.php server:watch"
     }
 }

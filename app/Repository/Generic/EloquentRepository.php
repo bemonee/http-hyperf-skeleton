@@ -34,11 +34,15 @@ abstract class EloquentRepository implements RepositoryInterface
     }
 
     /** @inheritDoc */
-    public function update(array $data, $id): int
+    public function update($id, array $data): int
     {
         $model = $this->findModelOrThrowNotFoundException($id);
 
-        return $model->update($data);
+        try {
+            return $model->update($data);
+        } catch (QueryException $e) {
+            throw new ConflictHttpException($this->model);
+        }
     }
 
     /** @inheritDoc */

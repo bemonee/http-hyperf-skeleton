@@ -4,8 +4,9 @@ namespace App\Exception\Http;
 
 use App\Model\Generic\Model;
 use App\Constants\Http\HttpStatusCodes;
+use App\Contract\Exception\NotFoundException;
 
-final class NotFoundHttpException extends ModelHttpException
+final class NotFoundHttpException extends ModelHttpException implements NotFoundException
 {
     public function __construct(Model $model, $id)
     {

@@ -7,8 +7,12 @@ use App\Request\Segment\SegmentRequest;
 use Psr\Http\Message\ResponseInterface;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\GetMapping;
+use Hyperf\HttpServer\Annotation\PutMapping;
+use App\Contract\Exception\ConflictException;
+use App\Contract\Exception\NotFoundException;
 use Hyperf\HttpServer\Annotation\PostMapping;
 use App\Controller\Generic\AbstractController;
+use Hyperf\HttpServer\Annotation\DeleteMapping;
 use App\Contract\Repository\Segment\SegmentRepositoryInterface;
 
 /**
@@ -33,6 +37,7 @@ class SegmentController extends AbstractController
 
     /**
      * @GetMapping(path="{segmentId}")
+     * @throws NotFoundException
      */
     public function getOneSegment(string $segmentId): ResponseInterface
     {
@@ -43,13 +48,42 @@ class SegmentController extends AbstractController
 
     /**
      * @PostMapping(path="")
+     * @throws ConflictException
      */
-    public function createOneSegment(SegmentRequest $request): void
+    public function createOneSegment(SegmentRequest $request): ResponseInterface
     {
         $validatedRequest = $request->validated();
 
         $this->segmentRepository->create([
             'name' => $validatedRequest['name']
         ]);
+
+        return $this->noContent();
+    }
+
+    /**
+     * @PutMapping(path="{segmentId}")
+     * @throws NotFoundException
+     */
+    public function updateOneSegment(SegmentRequest $request, $segmentId): ResponseInterface
+    {
+        $validatedRequest = $request->validated();
+
+        $this->segmentRepository->update($segmentId, [
+            'name' => $validatedRequest['name']
+        ]);
+
+        return $this->noContent();
+    }
+
+    /**
+     * @DeleteMapping(path="{segmentId}")
+     * @throws NotFoundException
+     */
+    public function deleteOneSegment($segmentId): ResponseInterface
+    {
+        $this->segmentRepository->delete($segmentId);
+
+        return $this->noContent();
     }
 }

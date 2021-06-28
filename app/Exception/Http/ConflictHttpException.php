@@ -4,8 +4,9 @@ namespace App\Exception\Http;
 
 use App\Model\Generic\Model;
 use App\Constants\Http\HttpStatusCodes;
+use App\Contract\Exception\ConflictException;
 
-final class ConflictHttpException extends ModelHttpException
+final class ConflictHttpException extends ModelHttpException implements ConflictException
 {
     public function __construct(Model $model)
     {

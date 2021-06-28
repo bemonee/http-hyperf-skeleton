@@ -4,22 +4,22 @@ namespace App\Contract\Repository\Generic;
 
 use App\Model\Generic\Model;
 use Hyperf\Database\Model\Collection;
-use App\Exception\Http\ConflictHttpException;
-use Hyperf\HttpMessage\Exception\NotFoundHttpException;
+use App\Contract\Exception\ConflictException;
+use App\Contract\Exception\NotFoundException;
 
 interface RepositoryInterface
 {
     public function all(): Collection;
 
-    /** @throws ConflictHttpException */
+    /** @throws ConflictException */
     public function create(array $data): Model;
 
-    /** @throws NotFoundHttpException */
-    public function update(array $data, $id): int;
+    /** @throws NotFoundException */
+    public function update($id, array $data): int;
 
-    /** @throws NotFoundHttpException */
+    /** @throws NotFoundException */
     public function delete($id): bool;
 
-    /** @throws NotFoundHttpException */
+    /** @throws NotFoundException */
     public function find($id): Model;
 }
