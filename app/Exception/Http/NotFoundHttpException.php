@@ -12,7 +12,7 @@ final class NotFoundHttpException extends ModelHttpException implements NotFound
     {
         parent::__construct(
             HttpStatusCodes::HTTP_NOT_FOUND,
-            "{$this->getModelClassNameWithoutNamespace($model)} with id $id not found"
+            "{$this->getModelClassNameWithoutNamespace($model)} with id {$id} not found"
         );
     }
 }

@@ -61,7 +61,7 @@ abstract class EloquentRepository implements RepositoryInterface
 
     private function findModelOrThrowNotFoundException($id): Model
     {
-        $model = $this->model->find($id);
+        $model = $this->model->findFromCache($id);
 
         if (null === $model) {
             throw new NotFoundHttpException($this->model, $id);

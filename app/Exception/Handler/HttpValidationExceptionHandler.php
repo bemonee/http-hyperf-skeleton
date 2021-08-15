@@ -11,6 +11,9 @@ use Hyperf\ExceptionHandler\ExceptionHandler;
 
 class HttpValidationExceptionHandler extends ExceptionHandler
 {
+    /** @Value("server_name") */
+    private string $serverName;
+
     public function handle(Throwable $throwable, ResponseInterface $response)
     {
         $this->stopPropagation();
@@ -27,7 +30,10 @@ class HttpValidationExceptionHandler extends ExceptionHandler
 
         $message = HttpErrorHelper::generateHttpErrorMessage($throwable->status, $errors);
 
-        return $response->withStatus($throwable->status)->withBody(new SwooleStream($message));
+        return $response
+            ->withHeader('Server', $this->serverName)
+            ->withStatus($throwable->status)
+            ->withBody(new SwooleStream($message));
     }
 
     public function isValid(Throwable $throwable): bool
