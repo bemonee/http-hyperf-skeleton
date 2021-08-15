@@ -72,6 +72,7 @@
             "rm -rf runtime/container"
         ],
         "test": "co-phpunit -c phpunit.xml --colors=always",
+        "coverage": "phpdbg -dmemory_limit=1024M -qrr ./vendor/bin/co-phpunit -c phpunit.xml --colors=always",
         "cs-fix": "php-cs-fixer fix --diff --config=.php_cs.php",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config ./test",
         "start": [

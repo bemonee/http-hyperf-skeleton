@@ -19,6 +19,6 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="cover/"/>
+        <log type="coverage-html" target="coverage/"/>
     </logging>
 </phpunit>

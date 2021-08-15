@@ -48,6 +48,16 @@ Para correr los test basta con ejecutar el siguiente comando:
 $ composer test
 ```
 
+# Coverage
+
+Para correr los test de coverage basta con ejecutar el siguiente comando:
+
+```bash
+$ composer coverage
+```
+
+Los reportes se encontrarán en la carpeta "coverage/"
+
 # Analizar el código estáticamente (BUGS)
 
 Para ejecutar el análisis estático de código para verificar posibles bugs basta con ejecutar el siguiente comando:
