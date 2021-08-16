@@ -20,7 +20,7 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="Pruebitas">
+    <testsuite name="Tests">
       <directory suffix="Test.php">./test</directory>
     </testsuite>
   </testsuites>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Test\Cases\Exception\Handler;
 
+use Carbon\Carbon;
 use Swoole\Exception;
 use PHPUnit\Framework\TestCase;
 use Hyperf\Contract\ConfigInterface;
@@ -39,6 +40,8 @@ final class AppExceptionHandlerTest extends TestCase
 
     public function testHandle()
     {
+        Carbon::setTestNow(Carbon::now());
+
         $serverResponse = $this->appExceptionHandler->handle(
             (new Exception()),
             (new Response())

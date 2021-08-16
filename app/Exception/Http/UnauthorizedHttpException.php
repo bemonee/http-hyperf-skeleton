@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exception\Http;
 
 use App\Constants\Http\HttpStatusCodes;
@@ -14,6 +16,6 @@ final class UnauthorizedHttpException extends HttpErrorException
             $message .= ' - Reason: ' . $reason;
         }
 
-        parent::__construct(HttpStatusCodes::HTTP_FORBIDDEN, $message);
+        parent::__construct(HttpStatusCodes::HTTP_UNAUTHORIZED, $message);
     }
 }

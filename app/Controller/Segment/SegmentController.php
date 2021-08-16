@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Segment;
 
 use Hyperf\Di\Annotation\Inject;

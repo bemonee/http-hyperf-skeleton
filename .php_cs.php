@@ -26,6 +26,7 @@ return (new PhpCsFixer\Config)->setRules([
         'single_blank_line_before_namespace' => true,
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['sortAlgorithm' => 'length'],
+        'declare_strict_types' => true,
 
         'class_attributes_separation' => [
             'elements' => [
@@ -41,4 +42,5 @@ return (new PhpCsFixer\Config)->setRules([
             ]
         ],
     ])
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ->setRiskyAllowed(true);

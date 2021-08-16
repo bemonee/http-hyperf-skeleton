@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Carbon\Carbon;
 use Hyperf\DbConnection\Db;
 use Hyperf\Database\Schema\Schema;
