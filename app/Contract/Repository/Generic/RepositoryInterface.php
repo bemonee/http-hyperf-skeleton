@@ -17,7 +17,7 @@ interface RepositoryInterface
     public function create(array $data): Model;
 
     /** @throws NotFoundException */
-    public function update($id, array $data): int;
+    public function update($id, array $data): bool;
 
     /** @throws NotFoundException */
     public function delete($id): bool;

@@ -36,7 +36,7 @@ abstract class EloquentRepository implements RepositoryInterface
     }
 
     /** @inheritDoc */
-    public function update($id, array $data): int
+    public function update($id, array $data): bool
     {
         $model = $this->findModelOrThrowNotFoundException($id);
 
@@ -52,7 +52,7 @@ abstract class EloquentRepository implements RepositoryInterface
     {
         $model = $this->findModelOrThrowNotFoundException($id);
 
-        return $model->destroy($id);
+        return (bool) $model->destroy($id);
     }
 
     /** @inheritDoc */
