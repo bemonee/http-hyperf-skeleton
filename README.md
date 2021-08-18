@@ -19,6 +19,7 @@ Este access token se validará en cada petición que se realice para verificar l
 $ composer install
 ```
 
+# Correr para desarrollo local
 Una vez instalado, puedes correr la app usando los siguientes comandos:
 
 ```bash
@@ -38,6 +39,18 @@ $ composer start
 Para evitar este comportamiento se implemento un hot-reload util para el desarrollo que realiza este proceso automatico si se ejecuta la app de la siguiente manera:
 ```bash
 $ composer start-dev
+```
+
+# Correr con Docker
+
+Buildear
+```bash
+$ docker build -t http-hyperf-skeleton .
+```
+
+Correr
+```bash
+$ docker run -d --network=host http-hyperf-skeleton:latest 
 ```
 
 # Test

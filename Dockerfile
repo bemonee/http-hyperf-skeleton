@@ -42,13 +42,20 @@ RUN set -ex \
 
 WORKDIR /opt/www
 
+# Install dependencies from cache
 # Composer Cache
 # COPY ./composer.* /opt/www/
 # RUN composer install --no-dev --no-scripts
 
+# Install dependencies
 COPY . /opt/www
 RUN composer install --no-dev -o && php bin/hyperf.php
 
+# Expose port 9501
 EXPOSE 9501
 
-ENTRYPOINT ["php", "/opt/www/bin/hyperf.php", "start"]
+# Give executable perms to entrypoint
+RUN ["chmod", "+x", "/opt/www/etc/docker-entrypoint.sh"]
+
+# Start server
+ENTRYPOINT ["/opt/www/etc/docker-entrypoint.sh"]
