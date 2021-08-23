@@ -31,14 +31,14 @@ final class AppExceptionHandlerTest extends TestCase
         $this->appExceptionHandler = new AppExceptionHandler($this->config, $mockedLogger);
     }
 
-    public function testIsValid()
+    public function testIsValid(): void
     {
         $this->assertTrue(
             $this->appExceptionHandler->isValid((new Exception()))
         );
     }
 
-    public function testHandle()
+    public function testHandle(): void
     {
         Carbon::setTestNow(Carbon::now());
 

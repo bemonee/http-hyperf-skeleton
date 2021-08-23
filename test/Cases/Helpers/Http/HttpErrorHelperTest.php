@@ -12,7 +12,7 @@ final class HttpErrorHelperTest extends TestCase
 {
     private const A_DUMMY_MESSAGE = 'a-dummy-message';
 
-    public function testGenerateHttpErrorMessage()
+    public function testGenerateHttpErrorMessage(): void
     {
         $expectedError = HttpStatusCodes::getMessageForCode(HttpStatusCodes::HTTP_BAD_REQUEST);
 

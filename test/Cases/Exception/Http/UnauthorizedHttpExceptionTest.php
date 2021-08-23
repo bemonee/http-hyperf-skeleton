@@ -16,7 +16,7 @@ final class UnauthorizedHttpExceptionTest extends TestCase
 
     private const EXPECTED_MESSAGE = 'User must be authenticated to perform this action - Reason: '.self::A_DUMMY_REASON;
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         Carbon::setTestNow(Carbon::now());
 

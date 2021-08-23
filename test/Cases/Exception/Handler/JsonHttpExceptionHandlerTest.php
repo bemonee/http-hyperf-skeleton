@@ -44,7 +44,7 @@ final class JsonHttpExceptionHandlerTest extends TestCase
         );
     }
 
-    public function testHandle()
+    public function testHandle(): void
     {
         Carbon::setTestNow(Carbon::now());
 

@@ -14,7 +14,7 @@ final class ForbiddenHttpExceptionTest extends TestCase
 {
     private const EXPECTED_MESSAGE = 'User is not authorized to perform this action';
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         Carbon::setTestNow(Carbon::now());
 

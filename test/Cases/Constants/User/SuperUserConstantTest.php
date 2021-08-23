@@ -15,7 +15,7 @@ final class SuperUserConstantTest extends TestCase
 
     private const A_NON_SUPER_USER_ID = 2;
 
-    public function testSuperUserConstant()
+    public function testSuperUserConstant(): void
     {
         $this->assertEquals(self::SUPER_USER_ID, SuperUserConstant::getId());
 

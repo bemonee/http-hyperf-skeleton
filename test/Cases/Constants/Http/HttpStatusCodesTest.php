@@ -11,7 +11,7 @@ final class HttpStatusCodesTest extends TestCase
 {
     private const EXPECTED_BAD_REQUEST_MESSAGE = '400 Bad Request';
 
-    public function testGetMessageForCode()
+    public function testGetMessageForCode(): void
     {
         $this->assertEquals(
             self::EXPECTED_BAD_REQUEST_MESSAGE,
@@ -19,7 +19,7 @@ final class HttpStatusCodesTest extends TestCase
         );
     }
 
-    public function testIsError()
+    public function testIsError(): void
     {
         $this->assertNotTrue(
             HttpStatusCodes::isError(HttpStatusCodes::HTTP_CREATED)

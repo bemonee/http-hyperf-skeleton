@@ -17,7 +17,7 @@ final class NotFoundHttpExceptionTest extends TestCase
 
     private const EXPECTED_MESSAGE = 'DummyModel with id '.self::A_DUMMY_MODEL_ID.' not found';
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         Carbon::setTestNow(Carbon::now());
 

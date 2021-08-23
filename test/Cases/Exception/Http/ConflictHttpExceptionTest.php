@@ -15,7 +15,7 @@ final class ConflictHttpExceptionTest extends TestCase
 {
     private const EXPECTED_MESSAGE = 'A DummyModel with that input already exists';
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         Carbon::setTestNow(Carbon::now());
 

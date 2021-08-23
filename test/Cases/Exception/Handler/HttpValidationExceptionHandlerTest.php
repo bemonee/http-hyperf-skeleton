@@ -37,7 +37,7 @@ final class HttpValidationExceptionHandlerTest extends TestCase
         $this->httpValidationExceptionHandler = new HttpValidationExceptionHandler($this->config);
     }
 
-    public function testIsValid()
+    public function testIsValid(): void
     {
         $this->assertNotTrue(
             $this->httpValidationExceptionHandler->isValid((new Exception()))
@@ -48,7 +48,7 @@ final class HttpValidationExceptionHandlerTest extends TestCase
         );
     }
 
-    public function testHandle()
+    public function testHandle(): void
     {
         Carbon::setTestNow(Carbon::now());
 
