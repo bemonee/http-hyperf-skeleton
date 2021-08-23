@@ -9,7 +9,6 @@ use Hyperf\Utils\Str;
 use Psr\Log\LoggerInterface;
 use Hyperf\Logger\LoggerFactory;
 use Hyperf\Event\Annotation\Listener;
-use Psr\Container\ContainerInterface;
 use Hyperf\Database\Events\QueryExecuted;
 use Hyperf\Event\Contract\ListenerInterface;
 
@@ -18,14 +17,11 @@ use Hyperf\Event\Contract\ListenerInterface;
  */
 class DbQueryExecutedListener implements ListenerInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(LoggerFactory $loggerFactory)
     {
-        $this->logger = $container->get(LoggerFactory::class)->get('sql');
+        $this->logger = $loggerFactory->get('sql');
     }
 
     public function listen(): array
@@ -35,9 +31,6 @@ class DbQueryExecutedListener implements ListenerInterface
         ];
     }
 
-    /**
-     * @param QueryExecuted $event
-     */
     public function process(object $event)
     {
         if ($event instanceof QueryExecuted) {
