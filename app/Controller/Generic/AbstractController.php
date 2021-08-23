@@ -14,23 +14,14 @@ use Psr\Http\Message\ResponseInterface as Psr7ResponseInterface;
 
 abstract class AbstractController
 {
-    /**
-     * @Inject
-     * @var ContainerInterface
-     */
-    protected $container;
+    /** @Inject */
+    protected ContainerInterface $container;
 
-    /**
-     * @Inject
-     * @var RequestInterface
-     */
-    protected $request;
+    /** @Inject */
+    protected RequestInterface $request;
 
-    /**
-     * @Inject
-     * @var ResponseInterface
-     */
-    protected $response;
+    /** @Inject */
+    protected ResponseInterface $response;
 
     protected function noContent(): Psr7ResponseInterface
     {

@@ -22,9 +22,7 @@ use App\Contract\Repository\Segment\SegmentRepositoryInterface;
  */
 class SegmentController extends AbstractController
 {
-    /**
-     * @Inject
-     */
+    /** @Inject */
     private SegmentRepositoryInterface $segmentRepository;
 
     /**
