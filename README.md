@@ -1,8 +1,6 @@
 # Introducción
 
-Esta es la aplicación encargada de gestionar todos los usuarios de todas las aplicaciones y los tenants.  
-Tiene como finalidad emitir accesos tokens válidos para el consumo del backend.  
-Este access token se validará en cada petición que se realice para verificar la autenticidad del mismo.
+Skeleton de microframework PHP. 
 
 # Requisitos para el desarrollo
 
