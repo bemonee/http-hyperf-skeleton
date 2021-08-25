@@ -483,4 +483,5 @@ composer.lock
 
 #####
 .env
+.env.testing
 coverage
