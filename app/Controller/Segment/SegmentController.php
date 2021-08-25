@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Segment;
 
-use Hyperf\Di\Annotation\Inject;
 use App\Request\Segment\SegmentRequest;
 use Psr\Http\Message\ResponseInterface;
 use Hyperf\HttpServer\Annotation\Controller;
@@ -15,6 +14,7 @@ use App\Contract\Exception\NotFoundException;
 use Hyperf\HttpServer\Annotation\PostMapping;
 use App\Controller\Generic\AbstractController;
 use Hyperf\HttpServer\Annotation\DeleteMapping;
+use Hyperf\HttpServer\Contract\RequestInterface;
 use App\Contract\Repository\Segment\SegmentRepositoryInterface;
 
 /**
@@ -22,8 +22,17 @@ use App\Contract\Repository\Segment\SegmentRepositoryInterface;
  */
 class SegmentController extends AbstractController
 {
-    /** @Inject */
     private SegmentRepositoryInterface $segmentRepository;
+
+    public function __construct(
+        RequestInterface $request,
+        ResponseInterface $response,
+        SegmentRepositoryInterface $segmentRepository
+    ) {
+        parent::__construct($request, $response);
+
+        $this->segmentRepository = $segmentRepository;
+    }
 
     /**
      * @GetMapping(path="")
