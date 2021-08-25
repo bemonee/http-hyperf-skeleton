@@ -29,7 +29,8 @@
         "hyperf/model-cache": "~2.1.0",
         "hyperf/process": "~2.1.0",
         "hyperf/redis": "~2.1.0",
-        "hyperf/validation": "^2.1"
+        "hyperf/validation": "^2.1",
+        "qbhy/hyperf-multi-env": "^2.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
@@ -71,8 +72,8 @@
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
-        "test": "co-phpunit -c phpunit.xml --colors=always",
-        "coverage": "phpdbg -dmemory_limit=1024M -qrr ./vendor/bin/co-phpunit -c phpunit.xml --colors=always",
+        "test": "export APP_ENV=testing && php bin/hyperf.php migrate && co-phpunit -c phpunit.xml --colors=always",
+        "coverage": "export APP_ENV=testing && php bin/hyperf.php migrate && phpdbg -dmemory_limit=1024M -qrr ./vendor/bin/co-phpunit -c phpunit.xml --colors=always",
         "cs-fix": "php-cs-fixer fix --diff --config=.php_cs.php",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
         "start": [
