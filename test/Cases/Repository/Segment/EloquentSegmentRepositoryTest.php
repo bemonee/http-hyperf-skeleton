@@ -11,8 +11,9 @@ use App\Contract\Exception\ConflictException;
 use App\Contract\Exception\NotFoundException;
 use App\Exception\Http\ConflictHttpException;
 use App\Repository\Segment\EloquentSegmentRepository;
+use App\Contract\Repository\Segment\SegmentRepositoryInterface;
 
-class EloquentSegmentDatabaseTest extends DatabaseTestCase
+class EloquentSegmentRepositoryTest extends DatabaseTestCase
 {
     private const SEGMENT_NAMES = [
         'a-segment',
@@ -21,7 +22,19 @@ class EloquentSegmentDatabaseTest extends DatabaseTestCase
 
     public function __construct()
     {
-        parent::__construct((new EloquentSegmentRepository((new Segment()))));
+        parent::__construct($this->initSegmentRepository());
+    }
+
+    private function initSegmentRepository(): SegmentRepositoryInterface
+    {
+        $model = new Segment();
+
+        return new EloquentSegmentRepository($model);
+    }
+
+    public function testConstruction(): void
+    {
+        $this->assertInstanceOf(EloquentSegmentRepository::class, $this->initSegmentRepository());
     }
 
     /**

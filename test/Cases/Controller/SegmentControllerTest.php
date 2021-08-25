@@ -13,7 +13,10 @@ final class SegmentControllerTest extends CrudControllerTestCase
 {
     private const BASE_URL = '/api/v1/segments';
 
-    private const A_SEGMENT_NAME = 'a-segment';
+    private const SEGMENT_NAMES = [
+        'a-segment',
+        'another-segment'
+    ];
 
     public function __construct()
     {
@@ -25,8 +28,18 @@ final class SegmentControllerTest extends CrudControllerTestCase
      */
     public function testGetAllSegments(): void
     {
-        //$this->client->post(self::BASE_URL, ['name' => self::A_SEGMENT_NAME]);
+        $emptySegments = $this->get(self::BASE_URL);
 
-        $response = $this->client->get(self::BASE_URL);
+        $this->assertEmpty($emptySegments);
+
+        foreach (self::SEGMENT_NAMES as $segmentName) {
+            $this->repository->create([
+                'name' => $segmentName
+            ]);
+        }
+
+        $twoSegments = $this->get(self::BASE_URL);
+        var_dump($twoSegments);
+        //$this->assertCount(2, $twoSegments);
     }
 }
