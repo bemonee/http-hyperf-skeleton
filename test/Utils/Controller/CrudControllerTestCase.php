@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Test;
+namespace Test\Utils\Controller;
 
 use Hyperf\Testing\Client;
-use PHPUnit\Framework\TestCase;
+use Test\Utils\Database\DatabaseTestCase;
+use App\Contract\Repository\Generic\RepositoryInterface;
 
 /**
  * Class HttpTestCase.
@@ -15,16 +16,14 @@ use PHPUnit\Framework\TestCase;
  * @method file($uri, $data = [], $headers = [])
  * @method request($method, $path, $options = [])
  */
-abstract class HttpTestCase extends TestCase
+abstract class CrudControllerTestCase extends DatabaseTestCase
 {
-    /**
-     * @var Client
-     */
-    protected $client;
+    protected Client $client;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct(RepositoryInterface $repository, $name = null, array $data = [], $dataName = '')
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($repository, $name, $data, $dataName);
+
         $this->client = make(Client::class);
     }
 

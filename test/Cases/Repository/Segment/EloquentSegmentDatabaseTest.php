@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace Test\Cases\Repository\Segment;
 
-use App\Exception\Http\ConflictHttpException;
 use App\Model\Generic\Model;
 use App\Model\Segment\Segment;
 use Test\Utils\Database\DatabaseTestCase;
 use App\Contract\Exception\ConflictException;
 use App\Contract\Exception\NotFoundException;
-use App\Repository\Generic\EloquentRepository;
+use App\Exception\Http\ConflictHttpException;
 use App\Repository\Segment\EloquentSegmentRepository;
 
-class EloquentSegmentRepositoryTest extends DatabaseTestCase
+class EloquentSegmentDatabaseTest extends DatabaseTestCase
 {
     private const SEGMENT_NAMES = [
         'a-segment',
         'another-segment'
     ];
 
-    protected function getRepository(): EloquentRepository
+    public function __construct()
     {
-        return new EloquentSegmentRepository((new Segment()));
+        parent::__construct((new EloquentSegmentRepository((new Segment()))));
     }
 
     /**
