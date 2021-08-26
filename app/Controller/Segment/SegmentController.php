@@ -66,11 +66,13 @@ class SegmentController extends AbstractController
     {
         $validatedRequest = $request->validated();
 
-        $this->segmentRepository->create([
+        $segment = $this->segmentRepository->create([
             'name' => $validatedRequest['name']
         ]);
 
-        return $this->noContent();
+        return $this->response->json(
+            $segment->toArray()
+        );
     }
 
     /**

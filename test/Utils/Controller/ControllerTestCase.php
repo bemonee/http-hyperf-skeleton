@@ -6,6 +6,7 @@ namespace Test\Utils\Controller;
 
 use Hyperf\Testing\Client;
 use PHPUnit\Framework\TestCase;
+use Test\Utils\Cache\RefreshCacheTrait;
 use Test\Utils\Database\RefreshDatabaseTrait;
 
 /**
@@ -17,9 +18,10 @@ use Test\Utils\Database\RefreshDatabaseTrait;
  */
 abstract class ControllerTestCase extends TestCase
 {
-    use RefreshDatabaseTrait;
-
     protected Client $client;
+
+    use RefreshDatabaseTrait;
+    use RefreshCacheTrait;
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
@@ -38,5 +40,7 @@ abstract class ControllerTestCase extends TestCase
         parent::tearDown();
 
         $this->refreshDatabase();
+
+        $this->refreshCache();
     }
 }

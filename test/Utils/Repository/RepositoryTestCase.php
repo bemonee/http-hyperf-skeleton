@@ -6,14 +6,16 @@ namespace Test\Utils\Repository;
 
 use PHPUnit\Framework\TestCase;
 use Hyperf\Utils\ApplicationContext;
+use Test\Utils\Cache\RefreshCacheTrait;
 use Test\Utils\Database\DatabaseTransactionTrait;
 use App\Contract\Repository\Generic\RepositoryInterface;
 
 abstract class RepositoryTestCase extends TestCase
 {
-    use DatabaseTransactionTrait;
-
     protected RepositoryInterface $repository;
+
+    use RefreshCacheTrait;
+    use DatabaseTransactionTrait;
 
     public function __construct(string $repositoryName, $name = null, array $data = [], $dataName = '')
     {
@@ -34,5 +36,7 @@ abstract class RepositoryTestCase extends TestCase
         parent::tearDown();
 
         $this->rollbackTransaction();
+
+        $this->refreshCache();
     }
 }
