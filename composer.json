@@ -33,6 +33,7 @@
         "qbhy/hyperf-multi-env": "^2.1"
     },
     "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.14",
         "hyperf/devtool": "~2.1.0",
         "hyperf/testing": "~2.1.0",
@@ -64,7 +65,28 @@
         "optimize-autoloader": true,
         "sort-packages": true
     },
-    "extra": [],
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "echo committing as $(git config user.name)",
+                "echo fixing code style",
+                "php-cs-fixer fix --diff --config=.php_cs.php",
+                "echo analysing with phpstan",
+                "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config"
+            ],
+            "commit-msg": "grep -q '[A-Z]+-[0-9]+.*' $1",
+            "pre-push": [
+                "echo pushing as $(git config user.name)",
+                "echo fixing code style",
+                "php-cs-fixer fix --diff --config=.php_cs.php",
+                "echo analysing with phpstan",
+                "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
+                "echo running tests",
+                "export APP_ENV=testing && php bin/hyperf.php migrate && co-phpunit -c phpunit.xml --colors=always"
+            ],
+            "post-merge": "composer install"
+        }
+    },
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
