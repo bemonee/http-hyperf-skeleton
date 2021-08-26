@@ -178,9 +178,4 @@ final class SegmentControllerTest extends ControllerTestCase
 
         $this->assertEquals($expectedError, $invalidResponse['error']);
     }
-
-    public function testDummy(): bool
-    {
-        $this->assertTrue(false);
-    }
 }
