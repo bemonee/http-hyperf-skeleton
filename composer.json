@@ -68,27 +68,10 @@
     "extra": {
         "hooks": {
             "config": {
-                "stop-on-failure": [
-                    "pre-commit",
-                    "pre-push"
-                ]
+                "stop-on-failure": ["pre-commit", "pre-push"]
             },
-            "pre-commit": [
-                "echo Committing as $(git config user.name)",
-                "echo Checking code style...",
-                "composer cs-check",
-                "echo Analysing with phpstan...",
-                "composer analyse"
-            ],
-            "pre-push": [
-                "echo pushing as $(git config user.name)",
-                "echo Checking code style...",
-                "composer cs-check",
-                "echo Analysing with phpstan...",
-                "composer analyse",
-                "echo Running Tests...",
-                "composer test"
-            ],
+            "pre-commit": "composer cs-check && composer analyse",
+            "pre-push": "composer cs-check && composer analyse && composer test",
             "post-merge": "composer install"
         }
     },
