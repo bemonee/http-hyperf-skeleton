@@ -82,11 +82,11 @@
             ],
             "pre-push": [
                 "echo pushing as $(git config user.name)",
-                "echo fixing code style",
+                "echo Fixing code style...",
                 "composer cs-fix",
-                "echo analysing with phpstan",
+                "echo Analysing with phpstan...",
                 "composer analyse",
-                "echo running tests",
+                "echo Running Tests...",
                 "composer test"
             ],
             "post-merge": "composer install"
