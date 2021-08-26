@@ -67,27 +67,35 @@
     },
     "extra": {
         "hooks": {
+            "config": {
+                "stop-on-failure": [
+                    "pre-commit",
+                    "pre-push"
+                ]
+            },
             "pre-commit": [
-                "echo committing as $(git config user.name)",
-                "echo fixing code style",
-                "php-cs-fixer fix --diff --config=.php_cs.php",
-                "echo analysing with phpstan",
-                "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config"
+                "echo Committing as $(git config user.name)",
+                "echo Fixing code style...",
+                "composer cs-fix",
+                "echo Analysing with phpstan...",
+                "composer analyse"
             ],
-            "commit-msg": "grep -q '[A-Z]+-[0-9]+.*' $1",
             "pre-push": [
                 "echo pushing as $(git config user.name)",
                 "echo fixing code style",
-                "php-cs-fixer fix --diff --config=.php_cs.php",
+                "composer cs-fix",
                 "echo analysing with phpstan",
-                "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
+                "composer analyse",
                 "echo running tests",
-                "export APP_ENV=testing && php bin/hyperf.php migrate && co-phpunit -c phpunit.xml --colors=always"
+                "composer test"
             ],
             "post-merge": "composer install"
         }
     },
     "scripts": {
+        "cghooks": "vendor/bin/cghooks",
+        "post-install-cmd": "cghooks add --ignore-lock",
+        "post-update-cmd": "cghooks update",
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php -r \"file_exists('.env.testing') || copy('.env.testing.example', '.env.testing');\""
