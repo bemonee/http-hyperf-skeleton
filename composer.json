@@ -75,15 +75,15 @@
             },
             "pre-commit": [
                 "echo Committing as $(git config user.name)",
-                "echo Fixing code style...",
-                "composer cs-fix",
+                "echo Checking code style...",
+                "composer cs-check",
                 "echo Analysing with phpstan...",
                 "composer analyse"
             ],
             "pre-push": [
                 "echo pushing as $(git config user.name)",
-                "echo Fixing code style...",
-                "composer cs-fix",
+                "echo Checking code style...",
+                "composer cs-check",
                 "echo Analysing with phpstan...",
                 "composer analyse",
                 "echo Running Tests...",
@@ -105,6 +105,7 @@
         ],
         "test": "export APP_ENV=testing && php bin/hyperf.php migrate && co-phpunit -c phpunit.xml --colors=always",
         "coverage": "export APP_ENV=testing && php bin/hyperf.php migrate && phpdbg -dmemory_limit=1024M -qrr ./vendor/bin/co-phpunit -c phpunit.xml --colors=always",
+        "cs-check": "php-cs-fixer fix --dry-run --diff --config=.php_cs.php",
         "cs-fix": "php-cs-fixer fix --diff --config=.php_cs.php",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
         "start": [
