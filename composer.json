@@ -79,10 +79,6 @@
         "cghooks": "vendor/bin/cghooks",
         "post-install-cmd": "cghooks add --ignore-lock",
         "post-update-cmd": "cghooks update",
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php -r \"file_exists('.env.testing') || copy('.env.testing.example', '.env.testing');\""
-        ],
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
