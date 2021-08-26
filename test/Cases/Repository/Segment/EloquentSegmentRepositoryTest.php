@@ -22,19 +22,16 @@ class EloquentSegmentRepositoryTest extends DatabaseTestCase
 
     public function __construct()
     {
-        parent::__construct($this->initSegmentRepository());
-    }
-
-    private function initSegmentRepository(): SegmentRepositoryInterface
-    {
-        $model = new Segment();
-
-        return new EloquentSegmentRepository($model);
+        parent::__construct(SegmentRepositoryInterface::class);
     }
 
     public function testConstruction(): void
     {
-        $this->assertInstanceOf(EloquentSegmentRepository::class, $this->initSegmentRepository());
+        $model = new Segment();
+
+        $repository = new EloquentSegmentRepository($model);
+
+        $this->assertInstanceOf(EloquentSegmentRepository::class, $repository);
     }
 
     /**

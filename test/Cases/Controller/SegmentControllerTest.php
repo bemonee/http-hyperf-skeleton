@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Test\Cases\Controller;
 
-use App\Model\Segment\Segment;
-use App\Contract\Exception\ConflictException;
 use Test\Utils\Controller\CrudControllerTestCase;
-use App\Repository\Segment\EloquentSegmentRepository;
+use App\Contract\Repository\Segment\SegmentRepositoryInterface;
 
 final class SegmentControllerTest extends CrudControllerTestCase
 {
@@ -20,26 +18,32 @@ final class SegmentControllerTest extends CrudControllerTestCase
 
     public function __construct()
     {
-        parent::__construct((new EloquentSegmentRepository((new Segment()))));
+        parent::__construct(SegmentRepositoryInterface::class);
     }
 
-    /**
-     * @throws ConflictException
-     */
-    public function testGetAllSegments(): void
+    public function testGetAllSegmentsEmpty(): void
     {
         $emptySegments = $this->get(self::BASE_URL);
 
         $this->assertEmpty($emptySegments);
+    }
 
+    public function testGetAllSegmentsWithValues(): void
+    {
         foreach (self::SEGMENT_NAMES as $segmentName) {
             $this->repository->create([
-                'name' => $segmentName
+                'name' => $segmentName,
             ]);
         }
 
-        $twoSegments = $this->get(self::BASE_URL);
-        var_dump($twoSegments);
-        //$this->assertCount(2, $twoSegments);
+        $segments = $this->repository->all();
+
+        $this->assertNotEmpty($segments);
+
+        $emptySegments = $this->get(self::BASE_URL);
+
+        //var_dump($emptySegments);
+
+        $this->assertEmpty($emptySegments);
     }
 }

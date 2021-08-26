@@ -9,17 +9,13 @@ use Hyperf\Utils\ApplicationContext;
 
 trait DatabaseTransactionTrait
 {
-    protected function setUp(): void
+    protected function beginTransaction(): void
     {
-        parent::setUp();
-
         ApplicationContext::getContainer()->get(Db::class)->beginTransaction();
     }
 
-    protected function tearDown(): void
+    protected function rollbackTransaction(): void
     {
-        parent::tearDown();
-
         ApplicationContext::getContainer()->get(Db::class)->rollBack();
     }
 }

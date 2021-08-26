@@ -6,7 +6,6 @@ namespace Test\Utils\Controller;
 
 use Hyperf\Testing\Client;
 use Test\Utils\Database\DatabaseTestCase;
-use App\Contract\Repository\Generic\RepositoryInterface;
 
 /**
  * Class HttpTestCase.
@@ -20,9 +19,9 @@ abstract class CrudControllerTestCase extends DatabaseTestCase
 {
     protected Client $client;
 
-    public function __construct(RepositoryInterface $repository, $name = null, array $data = [], $dataName = '')
+    public function __construct(string $repositoryName, $name = null, array $data = [], $dataName = '')
     {
-        parent::__construct($repository, $name, $data, $dataName);
+        parent::__construct($repositoryName, $name, $data, $dataName);
 
         $this->client = make(Client::class);
     }

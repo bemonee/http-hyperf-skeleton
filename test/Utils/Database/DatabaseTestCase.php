@@ -5,43 +5,33 @@ declare(strict_types=1);
 namespace Test\Utils\Database;
 
 use PHPUnit\Framework\TestCase;
+use Hyperf\Utils\ApplicationContext;
 use App\Contract\Repository\Generic\RepositoryInterface;
 
 abstract class DatabaseTestCase extends TestCase
 {
-    use DatabaseTransactionTrait {
-        setUp as traitSetUp;
-        tearDown as traitTearDown;
-    }
+    use DatabaseTransactionTrait;
 
     protected RepositoryInterface $repository;
 
-    public function __construct(RepositoryInterface $repository, $name = null, array $data = [], $dataName = '')
+    public function __construct(string $repositoryName, $name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->repository = $repository;
+        $this->repository = ApplicationContext::getContainer()->get($repositoryName);
     }
 
     protected function setUp(): void
     {
-        $this->traitSetUp();
+        parent::setUp();
 
-        $this->concreteSetUp();
+        $this->beginTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->traitTearDown();
+        parent::tearDown();
 
-        $this->concreteTearDown();
-    }
-
-    protected function concreteSetUp(): void
-    {
-    }
-
-    protected function concreteTearDown(): void
-    {
+        $this->rollbackTransaction();
     }
 }
