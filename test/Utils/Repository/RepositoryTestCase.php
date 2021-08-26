@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Test\Utils\Database;
+namespace Test\Utils\Repository;
 
 use PHPUnit\Framework\TestCase;
 use Hyperf\Utils\ApplicationContext;
+use Test\Utils\Database\DatabaseTransactionTrait;
 use App\Contract\Repository\Generic\RepositoryInterface;
 
-abstract class DatabaseTestCase extends TestCase
+abstract class RepositoryTestCase extends TestCase
 {
     use DatabaseTransactionTrait;
 

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Cases\Controller;
 
-use Test\Utils\Controller\CrudControllerTestCase;
-use App\Contract\Repository\Segment\SegmentRepositoryInterface;
+use Test\Utils\Controller\ControllerTestCase;
 
-final class SegmentControllerTest extends CrudControllerTestCase
+final class SegmentControllerTest extends ControllerTestCase
 {
     private const BASE_URL = '/api/v1/segments';
 
@@ -15,11 +14,6 @@ final class SegmentControllerTest extends CrudControllerTestCase
         'a-segment',
         'another-segment'
     ];
-
-    public function __construct()
-    {
-        parent::__construct(SegmentRepositoryInterface::class);
-    }
 
     public function testGetAllSegmentsEmpty(): void
     {
@@ -31,19 +25,17 @@ final class SegmentControllerTest extends CrudControllerTestCase
     public function testGetAllSegmentsWithValues(): void
     {
         foreach (self::SEGMENT_NAMES as $segmentName) {
-            $this->repository->create([
+            $this->client->post(self::BASE_URL, [
                 'name' => $segmentName,
             ]);
         }
 
-        $segments = $this->repository->all();
+        $segments = $this->client->get(self::BASE_URL);
 
         $this->assertNotEmpty($segments);
 
-        $emptySegments = $this->get(self::BASE_URL);
-
-        //var_dump($emptySegments);
-
-        $this->assertEmpty($emptySegments);
+        foreach ($segments as $index => $segment) {
+            $this->assertEquals(self::SEGMENT_NAMES[$index], $segment['name']);
+        }
     }
 }

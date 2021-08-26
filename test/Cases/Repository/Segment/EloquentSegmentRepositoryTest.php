@@ -6,14 +6,14 @@ namespace Test\Cases\Repository\Segment;
 
 use App\Model\Generic\Model;
 use App\Model\Segment\Segment;
-use Test\Utils\Database\DatabaseTestCase;
 use App\Contract\Exception\ConflictException;
 use App\Contract\Exception\NotFoundException;
 use App\Exception\Http\ConflictHttpException;
+use Test\Utils\Repository\RepositoryTestCase;
 use App\Repository\Segment\EloquentSegmentRepository;
 use App\Contract\Repository\Segment\SegmentRepositoryInterface;
 
-class EloquentSegmentRepositoryTest extends DatabaseTestCase
+class EloquentSegmentRepositoryTest extends RepositoryTestCase
 {
     private const SEGMENT_NAMES = [
         'a-segment',
