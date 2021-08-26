@@ -33,6 +33,7 @@
         "qbhy/hyperf-multi-env": "^2.1"
     },
     "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.14",
         "hyperf/devtool": "~2.1.0",
         "hyperf/testing": "~2.1.0",
@@ -64,8 +65,37 @@
         "optimize-autoloader": true,
         "sort-packages": true
     },
-    "extra": [],
+    "extra": {
+        "hooks": {
+            "config": {
+                "stop-on-failure": [
+                    "pre-commit",
+                    "pre-push"
+                ]
+            },
+            "pre-commit": [
+                "echo Committing as $(git config user.name)",
+                "echo Checking code style...",
+                "composer cs-check",
+                "echo Analysing with phpstan...",
+                "composer analyse"
+            ],
+            "pre-push": [
+                "echo pushing as $(git config user.name)",
+                "echo Checking code style...",
+                "composer cs-check",
+                "echo Analysing with phpstan...",
+                "composer analyse",
+                "echo Running Tests...",
+                "composer test"
+            ],
+            "post-merge": "composer install"
+        }
+    },
     "scripts": {
+        "cghooks": "vendor/bin/cghooks",
+        "post-install-cmd": "cghooks add --ignore-lock",
+        "post-update-cmd": "cghooks update",
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php -r \"file_exists('.env.testing') || copy('.env.testing.example', '.env.testing');\""
@@ -75,6 +105,7 @@
         ],
         "test": "export APP_ENV=testing && php bin/hyperf.php migrate && co-phpunit -c phpunit.xml --colors=always",
         "coverage": "export APP_ENV=testing && php bin/hyperf.php migrate && phpdbg -dmemory_limit=1024M -qrr ./vendor/bin/co-phpunit -c phpunit.xml --colors=always",
+        "cs-check": "php-cs-fixer fix --dry-run --diff --config=.php_cs.php",
         "cs-fix": "php-cs-fixer fix --diff --config=.php_cs.php",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
         "start": [
