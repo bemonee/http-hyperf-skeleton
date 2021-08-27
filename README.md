@@ -13,9 +13,21 @@ Skeleton de microframework PHP.
 
 # Instalación
 
+## 1) Instalar dependencias
 ```bash
 $ composer install
 ```
+
+## 2) Copiar .envs
+
+```bash
+$ cp .env.example .env
+$ cp .env.testing.example .env.testing
+```
+
+## 3) Crear DB (MySQL)
+
+Según lo que se haya especificado en el archivo **.env** y **.env.testing**
 
 # Correr para desarrollo local
 Una vez instalado, puedes correr la app usando los siguientes comandos:
