@@ -50,7 +50,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Utility\\": "utility/"
         },
         "files": []
     },
@@ -76,9 +77,14 @@
         }
     },
     "scripts": {
-        "cghooks": "vendor/bin/cghooks",
-        "post-install-cmd": "cghooks add --ignore-lock",
-        "post-update-cmd": "cghooks update",
+        "post-install-cmd": [
+            "Utility\\ComposerScripts::devModeOnly",
+            "cghooks add --ignore-lock"
+        ],
+        "post-update-cmd": [
+            "Utility\\ComposerScripts::devModeOnly",
+            "cghooks update"
+        ],
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
@@ -87,10 +93,11 @@
         "cs-check": "php-cs-fixer fix --dry-run --diff --config=.php_cs.php",
         "cs-fix": "php-cs-fixer fix --diff --config=.php_cs.php",
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
+        "start-dev": "php bin/hyperf.php server:watch",
+        "cghooks": "vendor/bin/cghooks",
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "php ./bin/hyperf.php start"
-        ],
-        "start-dev": "php bin/hyperf.php server:watch"
+        ]
     }
 }
